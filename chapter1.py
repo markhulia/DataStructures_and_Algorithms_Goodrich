@@ -193,6 +193,9 @@ def punctuation(s):
 
 
 # C-1.26
+'''Write a short program that takes as input three integers, a, b, and c, from
+the console and determines if they can be used in a correct arithmetic
+formula (in the given order), like “a+b = c,” “a = b−c,” or “a ∗ b = c.”'''
 def formula():
     try:
         a, b, c = eval(input('Enter three numbers separated by coma: '))
@@ -203,4 +206,38 @@ def formula():
         return True
     return False
 
-print(formula())
+
+# C-1.27
+'''In Section 1.8, we provided three different implementations of a generator
+that computes factors of a given integer. The third of those implementations,
+from page 41, was the most efficient, but we noted that it did not
+yield the factors in increasing order. Modify the generator so that it reports
+factors in increasing order, while maintaining its general performance advantages.'''
+def factors(n):
+    k = 1
+    bigs =[]
+    while k*k<n:
+        if n % k == 0:
+            yield k
+            bigs.append(n // k)
+        k += 1
+    if k*k == n:
+        yield k
+    bigs.reverse()
+    for n in bigs:
+        yield n
+
+# for i in factors(100):
+#     print(i)
+
+# P-1.29
+
+def all_strings(str1, str2):
+    for i in str1:
+        print(i)
+
+
+
+all_strings('catdog', '')
+
+

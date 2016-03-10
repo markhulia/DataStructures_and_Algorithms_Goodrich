@@ -317,6 +317,48 @@ def typo(sentence):
         else:
             print(n+1, sentence)
 
+# typo('I will never spam my friends again.')
 
-typo('I will never spam my friends again.')
+# P-1.35
+'''The birthday paradox says that the probability that two people in a room
+will have the same birthday is more than half, provided n, the number of
+people in the room, is more than 23. This property is not really a paradox,
+but many people find it surprising. Design a Python program that can test
+this paradox by a series of experiments on randomly generated birthdays,
+which test this paradox for n = 5,10,15,20, . . . ,100.'''
 
+#generate random birthday dates (month, day)
+def randomDate():
+    month = randrange(1,13)
+    if month in [1,3,5,7,8,10,12]:
+        day = randrange(1,32)
+    elif month in [4,6,9,11]:
+        day = randrange(1,31)
+    else:
+        day = randrange(1,29)
+    return month, day
+
+
+def bdparadox(n, match = 0):
+    for i in range(1,n):
+        bd1 = randomDate()
+        for b in range (2, n):
+            bd2 = randomDate()
+            if bd1 == bd2:
+                match+=1
+    return n, match, match/n     #return number of trials, duplicats found
+                                 # and probability for current trial
+
+
+def stats():
+    l=[]
+    for n in range(5, 101, 5):
+        l.append(bdparadox(n))
+    printStats(l)
+
+
+def printStats(tpl):
+    print('Trials:\tMatches:\tProbability')
+    for i in tpl:
+        print(' ',i[0],'    ',i[1],'        ',i[2])
+stats()

@@ -6,7 +6,9 @@ returns True if k is even, and False otherwise. However, your function
 cannot use the multiplication, modulo, or division operators.'''
 import re
 import string
+from collections import Counter
 from random import choice, randrange, randint
+import random
 
 
 def isEven(m):
@@ -287,8 +289,34 @@ def simplecalc():
                 print('wrong symbol')
         l+=symbol
         symbol=input()
-
     print(eval(l))
-    # parse(l)
 
-simplecalc()
+
+# P-1.34
+'''A common punishment for school children is to write out a sentence multiple
+times. Write a Python stand-alone program that will write out the
+following sentence one hundred times: “I will never spam my friends
+again.” Your program should number each of the sentences and it should
+make eight different random-looking typos.'''
+#return random indices for sentences which will be mistyped
+def charIndex(sentence):
+    return randrange(0, len(sentence))
+
+#return random char indices in the sentence which will be mistyped
+def sentenceIndex(rng):
+    return random.sample(range(0, rng),8) #returns UNIQUE random numbers in the list
+
+def typo(sentence):
+    sentenceIndices = sorted(sentenceIndex(100))
+    sl = 0
+    for n in range(0, 100):
+        if sl<=7 and sentenceIndices[sl]==n:
+            print(n+1,sentence.replace(sentence[charIndex(sentence)],
+                                   chr(randrange(97, 123)),1)) #replace char with random char
+            sl+=1
+        else:
+            print(n+1, sentence)
+
+
+typo('I will never spam my friends again.')
+

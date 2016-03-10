@@ -230,14 +230,55 @@ def factors(n):
 # for i in factors(100):
 #     print(i)
 
+
+
 # P-1.29
+'''Write a Python program that outputs all possible strings formed by using
+the characters c , a , t , d , o , and g exactly once.'''
+def all_strings(str, iteration=0):
+    if iteration == len(str):
+        print(''.join(str))
 
-def all_strings(str1, str2):
-    for i in str1:
-        print(i)
+    for i in range(iteration, len(str)):
+        str_copy = [char for char in str]
+        str_copy[i], str_copy[iteration] = str_copy[iteration], str_copy[i]
+        all_strings(str_copy, iteration+1)
 
 
 
-all_strings('catdog', '')
 
 
+# P-1.30
+'''Write a Python program that can take a positive integer greater than 2 as
+input and write out the number of times one must repeatedly divide this
+number by 2 before getting a value less than 2.'''
+
+def inStr():
+    n = -1
+    while n<2:
+        try:
+            n = int(input('Enter a positive integer greater than 2: '))
+        except:
+            pass
+    print(positive(n))
+
+
+def positive(n, step=0):
+    if n < 2:
+        # print(step)
+        return step
+    return positive(n//2, step+1)
+
+
+inStr()
+
+# P-1.32
+'''Write a Python program that can simulate a simple calculator, using the
+console as the exclusive input and output device. That is, each input to the
+calculator, be it a number, like 12.34 or 1034, or an operator, like + or =,
+can be done on a separate line. After each such input, you should output
+to the Python console what would be displayed on your calculator.'''
+def calc():
+    symbol = input()
+    while symbol!='':
+        symbol = input()

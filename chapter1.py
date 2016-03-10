@@ -269,8 +269,7 @@ def positive(n, step=0):
         return step
     return positive(n//2, step+1)
 
-
-inStr()
+# inStr()
 
 # P-1.32
 '''Write a Python program that can simulate a simple calculator, using the
@@ -278,7 +277,18 @@ console as the exclusive input and output device. That is, each input to the
 calculator, be it a number, like 12.34 or 1034, or an operator, like + or =,
 can be done on a separate line. After each such input, you should output
 to the Python console what would be displayed on your calculator.'''
-def calc():
+def simplecalc():
+    # simple calculator assumes every input on a new line
+    l = ''
     symbol = input()
-    while symbol!='':
-        symbol = input()
+    while symbol!='=':
+        if symbol not in '=*/.+-()':
+            if not isinstance(int(symbol), int):
+                print('wrong symbol')
+        l+=symbol
+        symbol=input()
+
+    print(eval(l))
+    # parse(l)
+
+simplecalc()

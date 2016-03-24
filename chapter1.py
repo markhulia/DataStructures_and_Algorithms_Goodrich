@@ -1,5 +1,5 @@
 
-
+import struct
 #R-1.2
 '''Write a short Python function, is even(k), that takes an integer value and
 returns True if k is even, and False otherwise. However, your function
@@ -348,7 +348,6 @@ def bdparadox(n, match = 0):
                 match+=1
     return n, match, match/n     #return number of trials, duplicats found
                                  # and probability for current trial
-
 
 def stats():
     l=[]
